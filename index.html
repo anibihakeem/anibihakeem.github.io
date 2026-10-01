@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Hakeem Anibi, Business Intelligence Developer and MSc Data Science student in Naples, Italy. BI, data science and applied machine learning.">
+<meta name="author" content="Hakeem Anibi">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hakeem Anibi">
+<meta property="og:description" content="Hakeem Anibi, Business Intelligence Developer and MSc Data Science student in Naples, Italy. BI, data science and applied machine learning.">
+<meta property="og:url" content="https://anibihakeem.github.io/">
+<meta name="theme-color" content="#F2F5F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C1618" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F4E5F'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='700' text-anchor='middle' fill='%23ffffff'%3EHA%3C/text%3E%3C/svg%3E">
+<title>Hakeem Anibi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400..700&family=Onest:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: hero splits identity | a five-step "raw data to decision" card; later sections run a narrow heading column beside their content. */
+:root {
+  --bg: #F2F5F4;
+  --surface: #FFFFFF;
+  --ink: #10252B;
+  --muted: #56696E;
+  --line: #D3DDDB;
+  --accent: #1F4E5F;
+  --accent-soft: #E1ECEC;
+  --signal: #B8661A;
+  --on-accent: #FFFFFF;
+  --font-display: "Unbounded", "Arial Black", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Onest", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1618; --surface: #122124; --ink: #E4ECEA; --muted: #93A7A8; --line: #23393D;
+    --accent: #7FC0CB; --accent-soft: #163038; --signal: #E8A35E; --on-accent: #0C1618;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1618; --surface: #122124; --ink: #E4ECEA; --muted: #93A7A8; --line: #23393D;
+  --accent: #7FC0CB; --accent-soft: #163038; --signal: #E8A35E; --on-accent: #0C1618;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+p { margin: 0; }
+h1, h2, h3 { text-wrap: balance; }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: 1120px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+
+.skip {
+  position: absolute; left: 16px; top: -48px; z-index: 20;
+  background: var(--accent); color: var(--on-accent);
+  padding: 8px 14px; border-radius: 6px; text-decoration: none;
+}
+.skip:focus { top: 12px; }
+
+.label { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+/* Nav */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap { display: flex; align-items: center; gap: 22px; min-height: 62px; }
+.brand { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; text-decoration: none; margin-right: auto; }
+.nav-links { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
+.nav-links a { text-decoration: none; color: var(--muted); font-size: 0.95rem; }
+.nav-links a:hover { color: var(--ink); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 18px; border-radius: 999px;
+  font: 500 0.95rem/1.2 var(--font-body);
+  text-decoration: none; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+  transition: border-color .15s ease;
+}
+.btn:hover { border-color: var(--accent); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn-small { padding: 7px 14px; font-size: 0.9rem; }
+
+/* Hero */
+.hero { padding-block: clamp(48px, 8vw, 96px) clamp(44px, 6vw, 80px); }
+.hero .wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(36px, 5vw, 64px);
+  align-items: center;
+}
+.hero .label { margin-bottom: 18px; }
+h1 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2.3rem, 5.6vw, 4.3rem); line-height: 1.02;
+  letter-spacing: -0.03em; margin: 0 0 26px;
+}
+.lead { font-size: clamp(1.2rem, 2.1vw, 1.45rem); line-height: 1.42; max-width: 32ch; margin-bottom: 18px; font-weight: 500; }
+.sub { color: var(--muted); max-width: 54ch; }
+.status {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 26px;
+  font-size: 0.92rem; padding: 7px 16px 7px 12px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+}
+.status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--signal); flex: none; }
+.cta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.cta .btn { padding-inline: 15px; }
+
+/* Raw data to decision card */
+.flow { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px 24px 8px; }
+.flow-head { padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.flow-head h2 { font-family: var(--font-display); font-size: clamp(1.15rem, 1.8vw, 1.35rem); font-weight: 600; line-height: 1.25; letter-spacing: -0.015em; margin: 0; }
+.flow-head p { color: var(--muted); font-size: 0.95rem; margin-top: 6px; }
+.steps { list-style: none; margin: 0; padding: 0; }
+.step { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 16px; position: relative; padding-block: 14px; align-items: start; }
+.step:not(:last-child)::before {
+  content: ""; position: absolute; left: 17px; top: 48px; bottom: -14px; width: 1px; background: var(--line);
+}
+.step:not(:last-child)::after {
+  content: ""; position: absolute; left: 14px; top: 48px; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--signal); opacity: 0;
+  animation: flow 4.8s ease-in-out infinite;
+}
+.step:nth-child(2)::after { animation-delay: 1.2s; }
+.step:nth-child(3)::after { animation-delay: 2.4s; }
+.step:nth-child(4)::after { animation-delay: 3.6s; }
+@keyframes flow {
+  0% { top: 48px; opacity: 0; }
+  8% { opacity: 1; }
+  22% { top: calc(100% + 6px); opacity: 1; }
+  28%, 100% { top: calc(100% + 6px); opacity: 0; }
+}
+.step-num {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--accent); color: var(--accent); background: var(--surface);
+  display: grid; place-items: center; font-weight: 600; font-size: 0.85rem;
+  font-variant-numeric: tabular-nums; position: relative; z-index: 1;
+}
+.step h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; margin: 4px 0 0; line-height: 1.3; }
+.step p { color: var(--muted); font-size: 0.95rem; margin-top: 3px; line-height: 1.45; }
+.step .tools { color: var(--accent); font-size: 0.88rem; font-weight: 500; margin-top: 5px; }
+
+/* Highlights strip */
+.highlights { border-block: 1px solid var(--line); }
+.highlights-grid {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px; background: var(--line);
+  margin-inline: calc(clamp(16px, 4vw, 40px) * -1);
+}
+.highlight { background: var(--bg); padding: 28px clamp(16px, 4vw, 40px); }
+.highlight-num {
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+  letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums;
+}
+.highlight-num .u { color: var(--signal); }
+.highlight-label { margin-top: 12px; line-height: 1.4; font-size: 0.98rem; }
+
+/* Sections */
+.section { padding-block: clamp(56px, 8vw, 96px); border-top: 1px solid var(--line); }
+.section.after-strip { border-top: 0; }
+.section > .wrap { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: clamp(24px, 5vw, 56px); }
+.section-head { align-self: start; }
+.section-head h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.4rem, 2.4vw, 1.75rem); line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
+.section-head p { color: var(--muted); font-size: 0.95rem; margin-top: 10px; }
+@media (min-width: 881px) { .section-head { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 86px); } }
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.9fr); gap: clamp(24px, 4vw, 48px); }
+.prose { display: grid; gap: 1em; max-width: 62ch; font-size: 1.05rem; }
+.glance { border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; background: var(--surface); align-self: start; }
+.glance dl { margin: 0; display: grid; gap: 14px; }
+.glance dt { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.glance dd { margin: 2px 0 0; }
+
+/* Tags */
+.tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.tags li { font-size: 0.8rem; font-weight: 500; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+
+/* Projects */
+.featured { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+.card h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin: 0; line-height: 1.25; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: 0; }
+.facts div { background: var(--surface); padding: 10px 14px; }
+.facts dt { font-size: 0.8rem; color: var(--muted); }
+.facts dd { margin: 2px 0 0; font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+.quote { background: var(--accent-soft); border-radius: 10px; padding: 12px 14px; font-size: 0.97rem; }
+.card .tags { margin-top: auto; }
+.card-link { font-weight: 600; color: var(--accent); text-decoration: none; }
+.card-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.more { list-style: none; margin: 28px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.more li {
+  display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr) auto;
+  gap: 8px 24px; align-items: baseline; padding-block: 18px; border-bottom: 1px solid var(--line);
+}
+.more h3 { font-size: 1.02rem; font-weight: 600; margin: 0; }
+.more p { color: var(--muted); font-size: 0.98rem; }
+.more a { font-size: 0.92rem; font-weight: 600; color: var(--accent); text-decoration: none; white-space: nowrap; }
+.more a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.all-link { margin-top: 20px; font-size: 0.97rem; }
+.all-link a { color: var(--accent); font-weight: 500; }
+
+/* Experience */
+.timeline { list-style: none; margin: 0; padding: 0; }
+.role { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 24px; padding-block: 26px; border-top: 1px solid var(--line); }
+.role:first-child { border-top: 0; padding-top: 0; }
+.role-when { font-size: 0.9rem; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 3px; line-height: 1.5; }
+.role-when .now { display: inline-block; margin-top: 4px; color: var(--signal); font-weight: 600; }
+.role h3 { font-family: var(--font-display); font-size: 1.08rem; font-weight: 600; margin: 0; line-height: 1.3; }
+.org { margin: 4px 0 12px; color: var(--accent); font-weight: 500; }
+.points { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; max-width: 66ch; }
+.points li::marker { color: var(--muted); }
+.role .tags { margin-top: 14px; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 40px; }
+.skills h3 { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+
+/* Teaching */
+.teach { display: grid; gap: 14px; }
+.course { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: grid; gap: 10px; }
+.course + .sub-head { margin-top: 26px; }
+.course h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin: 0; }
+.course p:not(.label) { max-width: 62ch; }
+.sub-head { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 18px 0 0; }
+.articles { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.articles li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; padding-block: 16px; border-bottom: 1px solid var(--line); }
+.articles time { font-size: 0.9rem; color: var(--muted); padding-top: 1px; font-variant-numeric: tabular-nums; }
+.articles a { font-weight: 500; text-decoration: none; }
+.articles a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.articles .src { display: block; font-size: 0.9rem; color: var(--muted); margin-top: 2px; }
+.webinars { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* Education */
+.creds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 40px; }
+.creds h3 { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+.creds ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.creds strong { display: block; font-weight: 600; }
+.creds span { color: var(--muted); font-size: 0.96rem; }
+
+/* Contact */
+.contact-lead { font-size: clamp(1.12rem, 1.8vw, 1.3rem); line-height: 1.45; max-width: 46ch; }
+.email-box {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px;
+  margin-top: 24px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface);
+}
+.email-box a { font-size: clamp(1rem, 2vw, 1.15rem); font-weight: 500; text-decoration: none; color: var(--accent); word-break: break-all; }
+.email-box .btn { margin-left: auto; }
+.contact-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.contact-meta { margin-top: 18px; font-size: 0.9rem; color: var(--muted); }
+
+footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--muted); font-size: 0.9rem; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+/* Responsive */
+@media (max-width: 880px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+  .highlights-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .section > .wrap { grid-template-columns: minmax(0, 1fr); }
+  .about { grid-template-columns: minmax(0, 1fr); }
+  .featured { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .nav-links { display: none; }
+  .role { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .more li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .skills, .creds { grid-template-columns: minmax(0, 1fr); }
+  .articles li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+@media (max-width: 420px) {
+  .highlights-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .step::after { display: none; }
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Hakeem Anibi</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#writing">Teaching</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-small" href="resume.pdf" target="_blank" rel="noopener">CV</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <p class="label">Naples, Italy · Business Intelligence Developer</p>
+        <h1>Hakeem Anibi</h1>
+        <p class="lead">I scope the business question, build the pipeline underneath it, and ship reports and models that teams keep using.</p>
+        <p class="sub">Business Intelligence Developer at DaTarique Limited and MSc Data Science student at Università degli Studi di Napoli Federico II. Four years of work for teams in logistics, FMCG, professional services and research.</p>
+        <p class="status"><span class="dot" aria-hidden="true"></span>Open to roles, internships and collaborations in BI, data science and ML</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download CV</a>
+          <a class="btn" href="https://github.com/anibihakeem" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn" href="https://www.linkedin.com/in/hakeem-anibi/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="flow-head">
+          <h2>From raw data to a decision</h2>
+          <p>How I take a problem from start to finish</p>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num">1</span>
+            <div>
+              <h3>Source</h3>
+              <p>Bring in the data from wherever it already lives</p>
+              <p class="tools">Databases · APIs · spreadsheets</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-num">2</span>
+            <div>
+              <h3>Pipeline</h3>
+              <p>Clean it, check it and keep it updating on its own</p>
+              <p class="tools">SQL · Python · Spark</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-num">3</span>
+            <div>
+              <h3>Model</h3>
+              <p>Build the logic or machine learning model that answers the question</p>
+              <p class="tools">Power BI · scikit-learn</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-num">4</span>
+            <div>
+              <h3>Report</h3>
+              <p>Show the results in dashboards people can read at a glance</p>
+              <p class="tools">Power BI · Looker Studio</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-num">5</span>
+            <div>
+              <h3>Decision</h3>
+              <p>Walk the people who act on it through what it means</p>
+              <p class="tools">Presentations · leadership reviews</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="highlights" aria-label="Highlights">
+    <div class="wrap">
+      <div class="highlights-grid">
+        <div class="highlight">
+          <p class="highlight-num">25<span class="u">%</span></p>
+          <p class="highlight-label">less unnecessary marketing spend, from a cost-tracking analysis I built</p>
+        </div>
+        <div class="highlight">
+          <p class="highlight-num"><span class="u">~</span>50<span class="u">%</span></p>
+          <p class="highlight-label">less time spent on manual reporting after I automated it</p>
+        </div>
+        <div class="highlight">
+          <p class="highlight-num">2<span class="u">×</span></p>
+          <p class="highlight-label">faster refresh on a report with tens of millions of rows</p>
+        </div>
+        <div class="highlight">
+          <p class="highlight-num">871<span class="u">K</span></p>
+          <p class="highlight-label">tweets processed by a sentiment model I built</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section after-strip" id="about">
+    <div class="wrap">
+      <div class="section-head"><h2>About</h2></div>
+      <div class="about">
+        <div class="prose">
+          <p>Most of my work sits between the database and the decision. I write the SQL and the pipelines, build the semantic model so business logic lives in one governed place, and check that the numbers hold before anyone presents them. Month-end validation and reconciliation work taught me that a report nobody trusts changes nothing.</p>
+          <p>I started as a project analyst, building cost and margin dashboards for project leadership, and moved into full-time data work from there. Since then I have delivered reporting and automation for teams in logistics, FMCG, professional services and research, as an employee, a consultant and a freelancer. Alongside that work I teach SQL, through published tutorials, recorded webinars and an online course.</p>
+          <p>I am now completing an MSc in Data Science at Università degli Studi di Napoli Federico II, which has taken me further into machine learning, streaming systems and distributed data. This year my modules cover AI systems engineering, methods for AI and algorithm design, information systems and BI, and data security. I want work where both halves count.</p>
+          <p>I like learning new things, and most of what I can do today I picked up because a problem needed it.</p>
+        </div>
+        <aside class="glance" aria-label="At a glance">
+          <dl>
+            <div><dt>Based in</dt><dd>Naples, Italy (CET)</dd></div>
+            <div><dt>Current role</dt><dd>BI Developer, DaTarique Limited</dd></div>
+            <div><dt>Studying</dt><dd>MSc Data Science, Federico II</dd></div>
+            <div><dt>Focus</dt><dd>BI, analytics engineering, applied ML</dd></div>
+            <div><dt>Currently learning</dt><dd>AI systems engineering, algorithm design, data security</dd></div>
+            <div><dt>Working language</dt><dd>English</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>Machine learning and AI projects, mostly built during my MSc. The code for each is on GitHub.</p>
+      </div>
+      <div>
+        <div class="featured">
+          <article class="card">
+            <p class="label">Machine learning</p>
+            <h3>Sentiment Analysis</h3>
+            <p>A model that reads tweets and sorts them into four types of sentiment. I trained it on hundreds of thousands of tweets, then ran it on a stream of new tweets it had never seen, the way a live system would work.</p>
+            <dl class="facts">
+              <div><dt>Tweets processed</dt><dd>871K</dd></div>
+              <div><dt>Sentiment types</dt><dd>4</dd></div>
+            </dl>
+            <ul class="tags"><li>Machine learning</li><li>Python</li><li>Big data</li><li>Spark</li><li>Kafka</li></ul>
+            <a class="card-link" href="https://github.com/anibihakeem/bigdata_sentiment_analysis" target="_blank" rel="noopener">See the project ↗</a>
+          </article>
+          <article class="card">
+            <p class="label">AI</p>
+            <h3>AskTheLedger</h3>
+            <p>Ask a database a question out loud and get the answer back as a chart, without writing any code. It combines speech recognition with a large language model, with safeguards so it can only read the data and never change it.</p>
+            <p class="quote">Built so that people who do not know SQL can still get answers from their data.</p>
+            <ul class="tags"><li>AI</li><li>Large language models</li><li>Speech recognition</li><li>Python</li></ul>
+            <a class="card-link" href="https://github.com/anibihakeem/AskTheLedger" target="_blank" rel="noopener">See the project ↗</a>
+          </article>
+        </div>
+
+        <ul class="more">
+          <li>
+            <h3>Building energy prediction</h3>
+            <p>Predicts how much energy a building will use, comparing different models and ways of preparing the data.</p>
+            <a href="https://github.com/anibihakeem/predicting_energy_consumption" target="_blank" rel="noopener">See project ↗</a>
+          </li>
+          <li>
+            <h3>Power grid stability</h3>
+            <p>Predicts whether an electrical grid will stay stable, testing several machine learning models against each other.</p>
+            <a href="https://github.com/anibihakeem/grid_stability" target="_blank" rel="noopener">See project ↗</a>
+          </li>
+          <li>
+            <h3>Trump or Trudeau</h3>
+            <p>A text model that can tell whether a tweet was written by Donald Trump or Justin Trudeau.</p>
+            <a href="https://github.com/anibihakeem/trump-vs-trudeau-tweet-classification" target="_blank" rel="noopener">See project ↗</a>
+          </li>
+          <li>
+            <h3>Do left-handed people die young?</h3>
+            <p>Uses statistics to test a long-running claim about left-handed people and life expectancy.</p>
+            <a href="https://github.com/anibihakeem/left-handed-people" target="_blank" rel="noopener">See project ↗</a>
+          </li>
+        </ul>
+        <p class="all-link"><a href="https://github.com/anibihakeem?tab=repositories" target="_blank" rel="noopener">All projects on GitHub ↗</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="wrap">
+      <div class="section-head"><h2>Experience</h2></div>
+      <ol class="timeline">
+        <li class="role">
+          <div class="role-when">Sep 2025 – Present<br><span class="now">Current</span></div>
+          <div>
+            <h3>Business Intelligence Developer</h3>
+            <p class="org">DaTarique Limited</p>
+            <ul class="points">
+              <li>Built a near real-time KPI reporting pipeline that pulls product analytics and uptime data from live APIs into Google Sheets and Looker Studio, using batched, resumable Apps Script with lock-based concurrency control. It replaced a manual extract process.</li>
+              <li>Rebuilt a slow timesheet report running on tens of millions of rows, replacing a single SQL Server view with a star schema and cutting its refresh, scheduled eight times a day, from over 20 minutes to under 9. Also reworked complex cost calculations on a live Oracle connection that were hitting timeout and row limits.</li>
+              <li>Built a self-service project analytics page that puts all project information in one place, letting users choose the measures and breakdowns they need and switch between a summary view and a detailed table with one click.</li>
+              <li>Built and maintain a governed Power BI semantic model that lets non-technical staff build their own reports on shared business logic.</li>
+              <li>Built month-end validation reports that check the data hub's ITD spend and FTE calculations against source data before figures are released.</li>
+              <li>Delivered a programme management report used in monthly leadership reviews and funding decisions, and a live shipment tracker that flags at-risk deliveries early for a procurement client in Bahrain.</li>
+            </ul>
+            <ul class="tags">
+              <li>Power BI</li><li>DAX</li><li>Oracle</li><li>SQL Server</li><li>Looker Studio</li><li>Apps Script</li>
+            </ul>
+          </div>
+        </li>
+        <li class="role">
+          <div class="role-when">Jan 2025 – Aug 2025</div>
+          <div>
+            <h3>Data Analyst</h3>
+            <p class="org">Freelance</p>
+            <ul class="points">
+              <li>Automated a daily sales reporting pipeline from SQL Server into Power BI, so revenue, channel performance and anomalies showed up the same day.</li>
+              <li>Cut manual reporting effort by roughly 50% with SQL stored procedures and Excel VBA.</li>
+              <li>Deployed parameterised SSRS reports that standardised operational and financial reporting.</li>
+            </ul>
+            <ul class="tags">
+              <li>SQL Server</li><li>Power BI</li><li>SSRS</li><li>Excel VBA</li>
+            </ul>
+          </div>
+        </li>
+        <li class="role">
+          <div class="role-when">Sep 2023 – Dec 2024</div>
+          <div>
+            <h3>Data &amp; BI Analyst</h3>
+            <p class="org">UrBizEdge Limited</p>
+            <ul class="points">
+              <li>Built a marketing cost-tracking report that exposed underperforming channels, contributing to a 25% reduction in unnecessary spend.</li>
+              <li>Automated HR and approval workflows in Power Automate, cutting end-to-end processing time by over 50%.</li>
+              <li>Designed a workforce report on utilisation, leave patterns and productivity, used for hiring and capacity planning.</li>
+              <li>Led validation and reconciliation of revenue and financial metrics across reports.</li>
+            </ul>
+            <ul class="tags">
+              <li>Power BI</li><li>SQL</li><li>Power Automate</li><li>Excel</li>
+            </ul>
+          </div>
+        </li>
+        <li class="role">
+          <div class="role-when">Jan 2022 – Sep 2023</div>
+          <div>
+            <h3>Project Analyst</h3>
+            <p class="org">Deerfield Integrated Services Limited</p>
+            <ul class="points">
+              <li>Defined the metric framework and data requirements behind project decisions.</li>
+              <li>Built Excel dashboards on project costs, revenue and margin for project leadership.</li>
+              <li>Managed project finances and workflow planning to keep delivery on schedule.</li>
+            </ul>
+            <ul class="tags">
+              <li>Excel</li><li>Project finance</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="wrap">
+      <div class="section-head"><h2>Skills</h2></div>
+      <div class="skills">
+        <div>
+          <h3>Machine learning and statistics</h3>
+          <ul class="tags"><li>Python</li><li>scikit-learn</li><li>Spark MLlib</li><li>Classification</li><li>Regression</li><li>Text analysis (NLP)</li><li>Bayesian statistics</li></ul>
+        </div>
+        <div>
+          <h3>Working with data</h3>
+          <ul class="tags"><li>SQL</li><li>T-SQL</li><li>Oracle</li><li>BigQuery</li><li>Pandas</li><li>PySpark</li><li>Kafka</li><li>ETL</li></ul>
+        </div>
+        <div>
+          <h3>Reporting and automation</h3>
+          <ul class="tags"><li>Power BI</li><li>DAX</li><li>Looker Studio</li><li>SSRS</li><li>Excel</li><li>Apps Script</li><li>Power Automate</li></ul>
+        </div>
+        <div>
+          <h3>Working with people</h3>
+          <ul class="tags"><li>Presenting to non-technical teams</li><li>Teaching SQL</li><li>Technical writing</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="writing">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Teaching and writing</h2>
+        <p>A course, one-to-one tutoring, tutorials and webinars, mostly on SQL.</p>
+      </div>
+      <div class="teach">
+        <div class="course">
+          <p class="label">Online course</p>
+          <h3>SQL for Data Analysis</h3>
+          <p>A course that takes learners from SQL basics to advanced techniques, including joins, CTEs and stored procedures, with hands-on exercises throughout.</p>
+          <a class="card-link" href="https://class.urbizedge.com/p/sql-for-data-analysis" target="_blank" rel="noopener">View the course ↗</a>
+        </div>
+        <div class="course">
+          <p class="label">One-to-one tutoring · Preply · since March 2025</p>
+          <h3>Data analytics tutor</h3>
+          <p>I teach SQL, Python, Excel and Power BI to beginners, career changers and working analysts.</p>
+          <a class="card-link" href="https://preply.in/HAKEEM6EN22103442102?ts=17908392" target="_blank" rel="noopener">View my Preply profile ↗</a>
+        </div>
+
+        <h3 class="sub-head">Articles</h3>
+        <ul class="articles">
+          <li>
+            <time datetime="2024-05">May 2024</time>
+            <div><a href="https://urbizedge.com/beginners-guide-to-stored-procedures-in-sql/" target="_blank" rel="noopener">Beginners Guide to Stored Procedures in SQL</a><span class="src">UrBizEdge</span></div>
+          </li>
+          <li>
+            <time datetime="2024-03">Mar 2024</time>
+            <div><a href="https://www.mhsanalytics.com/blog/a-guide-to-combine-data-from-multiple-tables-in-sql-using-joins" target="_blank" rel="noopener">A Guide to Combine Data from Multiple Tables in SQL Using Joins</a><span class="src">MHS Analytics, Canada</span></div>
+          </li>
+          <li>
+            <time datetime="2023-12">Dec 2023</time>
+            <div><a href="https://www.mhsanalytics.com/blog/introduction-to-adventureworks-database-2022-a-guide-for-installation-and-data-exploration" target="_blank" rel="noopener">Introduction to AdventureWorks Database 2022: A Guide for Installation and Data Exploration</a><span class="src">MHS Analytics, Canada</span></div>
+          </li>
+          <li>
+            <time datetime="2023-11">Nov 2023</time>
+            <div><a href="https://urbizedge.com/window-functions-in-sql-the-window-frame/" target="_blank" rel="noopener">Window Functions in SQL: The Window Frame</a><span class="src">UrBizEdge</span></div>
+          </li>
+        </ul>
+
+        <h3 class="sub-head">Webinars</h3>
+        <ul class="webinars">
+          <li><a class="btn" href="https://youtu.be/Dkb42CExngg" target="_blank" rel="noopener">Webinar 1 ↗</a></li>
+          <li><a class="btn" href="https://youtu.be/1DK3q-yWUkQ" target="_blank" rel="noopener">Webinar 2 ↗</a></li>
+          <li><a class="btn" href="https://youtu.be/g243_hen9BU" target="_blank" rel="noopener">Webinar 3 ↗</a></li>
+          <li><a class="btn" href="https://youtu.be/0HAKucgRDVQ" target="_blank" rel="noopener">Webinar 4 ↗</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="wrap">
+      <div class="section-head"><h2>Education</h2></div>
+      <div class="creds">
+        <div>
+          <h3>Degree</h3>
+          <ul>
+            <li><strong>MSc, Data Science</strong><span>Università degli Studi di Napoli Federico II · 2025 – 2027</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Certification</h3>
+          <ul>
+            <li><strong>Microsoft Certified: Power BI Data Analyst Associate</strong><span>Microsoft</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="section-head"><h2>Get in touch</h2></div>
+      <div>
+        <p class="contact-lead">I am open to BI, data science, analytics engineering and applied machine learning roles, internships and collaborations, in Europe and beyond.</p>
+        <div class="email-box">
+          <a id="email-text" href="mailto:anibihakeem@gmail.com">anibihakeem@gmail.com</a>
+          <button class="btn btn-small" id="copy-email" type="button">Copy</button>
+        </div>
+        <div class="contact-links">
+          <a class="btn" href="https://www.linkedin.com/in/hakeem-anibi/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn" href="https://github.com/anibihakeem" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download CV</a>
+        </div>
+        <p class="contact-meta">Naples, Italy · Central European Time</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Hakeem Anibi</span>
+    <span>Naples, Italy</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy-email');
+  var addr = document.getElementById('email-text');
+  if (btn && addr) {
+    btn.addEventListener('click', function () {
+      var text = addr.textContent.trim();
+      var reset = function () { setTimeout(function () { btn.textContent = 'Copy'; }, 1800); };
+      var selectIt = function () {
+        try {
+          var range = document.createRange();
+          range.selectNodeContents(addr);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+          btn.textContent = 'Selected';
+        } catch (e) { btn.textContent = 'Copy failed'; }
+        reset();
+      };
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied'; reset(); }, selectIt);
+        } else { selectIt(); }
+      } catch (e) { selectIt(); }
+    });
+  }
+  var y = document.getElementById('year');
+  if (y) { y.textContent = String(new Date().getFullYear()); }
+})();
+</script>
+</body>
+</html>
